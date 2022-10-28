@@ -1,0 +1,15 @@
+.exampleClass {
+	padding: 12px 24px;
+    
+  
+    border-radius: 7px;
+    transition: transform 250ms cubic-bezier(.2,.8,.4,1);
+  }
+
+.exampleClass:hover {
+	transform: scale(1.10);
+  }
+
+.exampleClass:active {
+	transform: scale(0.9);
+}

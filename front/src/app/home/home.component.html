@@ -3,9 +3,12 @@
     <div class="text-base text-orange-900">url shortener, made easier</div>
 
    
-<input type="text" placeholder="Paste your link here" class="px-3 py-4 placeholder-slate-800 text-slate-600 relative bg-orange-600 rounded border-orange-700 text-base border-0  outline-none focus:outline-none  w-3/4 mt-16"/>
+<input [(ngModel)]="url" type="text" placeholder="Paste your link here" class="px-3 py-4 placeholder-slate-800 text-slate-600 relative bg-orange-600 rounded-3xl border-orange-700 text-base border-0  outline-none focus:outline-none  w-2/4 mt-16"/>
       
 
-<button class="mt-12 bg-orange-800 text-orange-900 hover:text-orange-800 hover:bg-orange-900 text-5xl font-black  px-12 py-6 rounded-3xl">Smolify</button>
+<button (click)="smolify()" class="exampleClass mt-12 bg-orange-800 text-orange-900 hover:text-orange-800 hover:bg-orange-900 text-5xl font-black  px-12 py-6 rounded-3xl">Smolify</button>
+
+<div *ngIf="isShorten" class="bg-yellow-100 w-2/4 mt-12 text-center py-6 text-4xl font-black text-slate-700 rounded-3xl"><a class="exampleClass" href="http://localhost:3001/{{newurl}}">https://smol.lu/<span class="text-slate-700">{{newurl}}</span></a></div>
+
 
 </div>
