@@ -71,7 +71,7 @@ app.get('/:code', async (req, res) => {
                 client.hSet('urls', code, url.longUrl, 'EX', 600);
                 return res.redirect(url.longUrl);
             } else {
-                return res.status(404).send('URL not found');
+                return res.status(404).send('Invalid URL');
             }
 
 });

@@ -20,4 +20,4 @@ Smollu is a URL shortener.
 
 ## Screenshots
 
-![App Screenshot](https://i.imgur.com/s1zFjaW.png)
+![App Screenshot](https://i.imgur.com/UqJFRyh.png)
