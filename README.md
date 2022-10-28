@@ -17,3 +17,7 @@ Smolu is a URL shortener.
 
 **Server:** Node, Express, MongoDB, Redis
 
+
+## Screenshots
+
+![App Screenshot](https://i.imgur.com/s1zFjaW.png)

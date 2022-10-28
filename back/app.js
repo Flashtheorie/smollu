@@ -52,6 +52,11 @@ app.post('/api/url/shorten', async (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            // hSet with a 10 minutes expiration
+            client.hSet('urls', shortUrl, url, 'EX', 600);
+
+
+
             res.json({shortUrl: shortUrl});
         }
     }
@@ -59,18 +64,16 @@ app.post('/api/url/shorten', async (req, res) => {
 });
 app.get('/:code', async (req, res) => {
     var code = req.params.code;
-    db.collection('urls').findOne({shortUrl: code}, function(err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            if (result) {
-                res.redirect(result.longUrl);
+   
+            var url = await db.collection('urls').findOne({shortUrl: code});
+            if (url) {
+                // hSet with a 10 minutes expiration
+                client.hSet('urls', code, url.longUrl, 'EX', 600);
+                return res.redirect(url.longUrl);
             } else {
-                res.redirect(config.CLIENT_HOME_PAGE_URL);
+                return res.status(404).send('URL not found');
             }
-        }
-    }
-    );
+
 });
 
 app.listen(PORT, function(){
