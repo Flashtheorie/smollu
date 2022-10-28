@@ -1,7 +1,7 @@
 
 # SMOLLU
 
-Smolu is a URL shortener.
+Smollu is a URL shortener.
 
 
 
