@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbaronline.component.css']
 })
 export class NavbaronlineComponent implements OnInit {
+  
+logout(){
+  localStorage.removeItem('id');
+  window.location.href = '/';
+}
 
   constructor() { }
 

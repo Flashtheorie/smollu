@@ -56,7 +56,7 @@ app.post('/api/url/shorten', async (req, res) => {
         res.json(result);
     }
     else {
-        db.collection('urls').insertOne({longUrl: url, shortUrl: shortUrl}, function(err, result) {
+        db.collection('urls').insertOne({longUrl: url, shortUrl: shortUrl, statut : 1}, function(err, result) {
             if (err) {
                 console.log(err);
             } else {
@@ -72,6 +72,35 @@ app.post('/api/url/shorten', async (req, res) => {
     }
 
 });
+
+app.post('/api/url/shortenwithid', async (req, res) => {
+    url = req.body.longUrl;
+    console.log(url);
+    var shortUrl = base62.encode(new Date().getTime());
+    // search in urls mongodb
+    const urls = db.collection('urls');
+    const result = await urls.findOne({ longUrl: url });
+    if (result) {
+       
+            res.json(result);
+        
+    }
+    else {
+        db.collection('urls').insertOne({longUrl: url, shortUrl: shortUrl, iduser: req.body.iduser, statut: 1, date: new Date()}, function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                // hSet with a 10 minutes expiration
+                client.hSet('urls', shortUrl, url, 'EX', 600);
+
+                res.json({shortUrl: shortUrl});
+            }
+        }
+        );
+    }
+});
+
+
 app.get('/:code', async (req, res) => {
     var code = req.params.code;
    
@@ -115,6 +144,38 @@ app.post('/api/register', async (req, res) => {
         }
         );
     }
+});
+
+
+// login
+app.post('/api/login', async (req, res) => {
+    var email = req.body.email;
+    var password = req.body.password;
+    var user = await db.collection('users').findOne({email: email});
+    if (user) {
+        // compare le mot de passe
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {res.json('error');}
+        else {
+            res.json(user._id);
+        }
+    } else {
+        res.json('error');
+    }
+});
+
+// fetch links from user
+app.get('/api/links/:id', async (req, res) => {
+    var id = req.params.id;
+    var links = await db.collection('urls').find({iduser: id, statut: 1}).toArray();
+    res.json(links);
+});
+
+
+app.get('/api/delete/:id', async (req, res) => {
+    var id = req.params.id;
+    var links = await db.collection('urls').deleteOne({_id: ObjectId(id)});
+
 });
 
 app.listen(PORT, function(){

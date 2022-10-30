@@ -10,7 +10,7 @@ import * as CryptoJS from 'crypto-js'; // npm install crypto-js --save
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+loader: boolean = false;
   decrypt(word, key = 'share') {
     let decData = CryptoJS.enc.Base64.parse(word).toString(CryptoJS.enc.Utf8)
     let bytes = CryptoJS.AES.decrypt(decData, key).toString(CryptoJS.enc.Utf8)
@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     else {
       return false;
     }
-    
   }
 
  
@@ -35,12 +34,24 @@ newurl: string = "";
 isShorten: boolean = false;
 
 smolify(){
-   this.http.post('http://localhost:3001/api/url/shorten', {longUrl: this.url}).subscribe((data: any) => {
+  this.loader = true;
+   // if loggedin
+    if (this.isLoggedin()) {
+      this.http.post('http://localhost:3001/api/url/shortenwithid', {longUrl: this.url, iduser: this.decrypt(localStorage.getItem('id'))}).subscribe((data: any) => {
       this.newurl = data.shortUrl;
       this.isShorten = true;
-    
+      this.loader = false;
    }
    );
+  }
+  else {
+    this.http.post('http://localhost:3001/api/url/shorten', {longUrl: this.url}).subscribe((data: any) => {
+      this.newurl = data.shortUrl;
+      this.isShorten = true;
+      this.loader = false;
+   }
+   );
+  }
   
 
 }

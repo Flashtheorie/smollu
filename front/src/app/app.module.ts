@@ -10,6 +10,7 @@ import { NavbaronlineComponent } from './navbaronline/navbaronline.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { MylinksComponent } from './mylinks/mylinks.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RegisterComponent } from './register/register.component';
     NavbaronlineComponent,
     PagenotfoundComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MylinksComponent
   ],
   imports: [
     BrowserModule,
