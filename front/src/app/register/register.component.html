@@ -1,0 +1,17 @@
+<!-- login page -->
+<div class="flex flex-col items-center justify-center h-screen"> 
+    <span class="text-orange-900 cursor-pointer" routerLink="/"><i class="fa-solid fa-left-long text-4xl"></i></span>
+     <h1 class="text-7xl font-extrabold text-orange-900">
+        Register</h1> 
+     
+         <input [(ngModel)]="email" type="text" placeholder="Email" class="placeholder:uppercase text-center px-3 py-4 text-3xl placeholder-orange-800 text-orange-800 relative bg-orange-600 rounded-3xl border-orange-700 border-0  outline-none focus:outline-none  w-2/4 mt-16"/> 
+         <span class="text-xs mt-2 text-orange-900">An activation link will be send to this email</span>
+         <input [(ngModel)]="password" type="password" placeholder="Password" class="placeholder:uppercase text-center px-3 py-4 text-3xl placeholder-orange-800 text-orange-800 relative bg-orange-600 rounded-3xl border-orange-700 border-0  outline-none focus:outline-none  w-2/4 mt-16"/> 
+         <span class="text-xs mt-2 text-orange-900">6 characters minimum - letters and numbers only</span>
+     <button  (click)="register()" class="exampleClass mt-12 bg-orange-800 text-orange-900 hover:text-orange-800 hover:bg-orange-900 text-3xl font-black  px-12 py-4 rounded-3xl">Register</button> 
+
+        <!-- no account ? -->
+        <div class="mt-12 text-slate-800 text-center">Already have an account ? <br> <a routerLink="/login" class="text-orange-900 hover:text-orange-800 text-2xl font-extrabold">Log in</a></div>
+ </div> 
+
+
