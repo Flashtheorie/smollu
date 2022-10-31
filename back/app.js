@@ -215,7 +215,7 @@ app.get('/api/user/:id', async (req, res) => {
 // partie paiement avec stripe
 
 
-app.post('/create-checkout-session-single/:id', async (req, res) => {
+app.post('/create-checkout-session/:id', async (req, res) => {
     // single payment of 50€
     const session = await stripe.checkout.sessions.create({
         mode: 'payment',

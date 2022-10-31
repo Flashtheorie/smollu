@@ -40,7 +40,7 @@
         
           <a class="group relative inline-block  duration-300 w-full">
           <!-- button to upgrade account -->
-            <button *ngIf="user.premium == 0" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full w-full">
+            <button (click)="checkout('price_1Lz15JH90mkV8RbSCQJabrrN')" *ngIf="user.premium == 0" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full w-full">
               Upgrade Account
             </button>
           
