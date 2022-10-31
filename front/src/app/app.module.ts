@@ -11,6 +11,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MylinksComponent } from './mylinks/mylinks.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MylinksComponent } from './mylinks/mylinks.component';
     PagenotfoundComponent,
     LoginComponent,
     RegisterComponent,
-    MylinksComponent
+    MylinksComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

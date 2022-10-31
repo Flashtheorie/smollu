@@ -1,0 +1,54 @@
+<app-navbaroffline *ngIf="!isLoggedin()"></app-navbaroffline>
+<app-navbaronline *ngIf="isLoggedin()"></app-navbaronline>
+
+
+
+<div *ngIf="loader" class="grid h-screen place-items-center">
+    <div class="loader "></div>
+</div>
+
+<div *ngFor="let user of users">
+<section class="mt-12  flex font-medium items-center justify-center">
+
+
+
+    <div class="mx-auto my-10 flex max-w-xs flex-col items-center rounded-xl border border-slate-800 dark:border-slate-100 px-4 py-4 text-center md:max-w-lg md:flex-row md:items-start md:text-left">
+      <div class="mb-4 md:mr-6 md:mb-0">
+       
+                 <img src="https://ui-avatars.com/api/name={{user.email}}&bold=true" class="h-56 rounded-lg object-cover md:w-56" alt="profile picture" srcset="">
+                
+               
+    
+      
+      </div>
+      <div class="">
+        <p class="text-base font-black text-orange-900 dark:text-slate-100">{{user.email }} 
+          
+        <p class="mb-4 text-sm font-medium text-orange-500">
+          
+        <div class="flex space-x-2 justify-center">
+          
+          <div class="flex flex-col items-center rounded-xl bg-gray-100 px-4 py-2">
+            <p class="text-sm font-medium text-gray-500">Account type</p>
+            <p class="text-3xl  text-gray-600 font-black" *ngIf="user.premium == 0">Basic</p>
+            <p class="text-3xl  text-yellow-600 font-black" *ngIf="user.premium == 1">Premium</p>
+          </div>
+          
+          <div class=""></div>
+        </div>
+        <div class="mb-3"></div>
+        
+          <a class="group relative inline-block  duration-300 w-full">
+          <!-- button to upgrade account -->
+            <button *ngIf="user.premium == 0" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full w-full">
+              Upgrade Account
+            </button>
+          
+    </a><div class="flex space-x-2">
+    
+          <!--  <button *ngIf="userid != getSessionInfos()" class="w-full rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white opacity-50 cursor-not-allowed">Suivre</button>-->
+          
+        </div>
+        
+      </div>
+    </div>

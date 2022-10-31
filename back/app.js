@@ -130,7 +130,7 @@ app.post('/api/register', async (req, res) => {
     var password = req.body.password;
     var user = await db.collection('users').findOne({email: email});
     if (user) {
-        res.json({error: 'Email already used'});
+        res.json('error');
     } else {
         // crypte le mot de passe
         const salt = await bcrypt.genSalt(10);
@@ -176,6 +176,25 @@ app.get('/api/delete/:id', async (req, res) => {
     var id = req.params.id;
     var links = await db.collection('urls').deleteOne({_id: ObjectId(id)});
 
+});
+
+
+// fetch user infos
+app.get('/api/user/:id', async (req, res) => {
+    var id = req.params.id;
+    // to array
+    db.collection('users').find({_id: ObjectId(id)}).toArray(function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+// transform into array
+    
+    });
+
+    
+    
 });
 
 app.listen(PORT, function(){
