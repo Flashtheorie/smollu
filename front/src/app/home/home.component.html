@@ -1,7 +1,14 @@
 <app-navbaroffline *ngIf="!isLoggedin()"></app-navbaroffline>
 <app-navbaronline *ngIf="isLoggedin()"></app-navbaronline>
 
-<div class="mt-16 flex flex-col justify-center items-center">
+
+<div *ngIf="loader" class="grid h-screen place-items-center">
+    <div class="loader "></div>
+</div>
+
+
+
+<div class="mt-16 flex flex-col justify-center items-center" *ngIf="!loader">
     <div class="text-6xl lg:text-9xl text-orange-900 font-black font-mono animation">smollu</div>
     <div class="text-base text-orange-900 italic mb-2">url shortener, made easier</div>
     

@@ -9,7 +9,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class MylinksComponent implements OnInit {
   mylinks: Array<any> = [];
-  loader: boolean = false;
+  loader: boolean = true;
   isLoggedin(){
     if (localStorage.getItem('id') != null) {
       return this.decrypt(localStorage.getItem('id'));;
@@ -31,8 +31,12 @@ export class MylinksComponent implements OnInit {
     return JSON.parse(bytes)
   }
   delete(id: string){
+    this.loader = true;
     this.http.get('http://localhost:3001/api/delete/' + id).subscribe((data: any) => {
-      window.location.reload();
+      
+      window.location.href = window.location.href
+    this.loader = false;  
+      
     });
   }
   constructor(private http: HttpClient) { 

@@ -175,6 +175,7 @@ app.get('/api/links/:id', async (req, res) => {
 app.get('/api/delete/:id', async (req, res) => {
     var id = req.params.id;
     var links = await db.collection('urls').deleteOne({_id: ObjectId(id)});
+    res.json('ok');
 
 });
 

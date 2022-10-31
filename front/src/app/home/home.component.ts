@@ -10,7 +10,7 @@ import * as CryptoJS from 'crypto-js'; // npm install crypto-js --save
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-loader: boolean = false;
+loader: boolean = true;
   decrypt(word, key = 'share') {
     let decData = CryptoJS.enc.Base64.parse(word).toString(CryptoJS.enc.Utf8)
     let bytes = CryptoJS.AES.decrypt(decData, key).toString(CryptoJS.enc.Utf8)
@@ -73,6 +73,7 @@ copyMessage(val: string){
   constructor(public http: HttpClient, private route: ActivatedRoute) {
 this.http.get('http://localhost:3001/api/url/shorten').subscribe((data: any) => {
   this.howmanylinks = data;
+  this.loader = false;
 }
 );
 
