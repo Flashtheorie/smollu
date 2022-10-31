@@ -135,7 +135,7 @@ app.post('/api/register', async (req, res) => {
         // crypte le mot de passe
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
-        db.collection('users').insertOne({email: email, password: hash}, function(err, result) {
+        db.collection('users').insertOne({email: email, password: hash, premium : 0}, function(err, result) {
             if (err) {
                 console.log(err);
             } else {
