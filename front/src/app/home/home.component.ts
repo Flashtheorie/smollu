@@ -32,7 +32,7 @@ loader: boolean = false;
   url: string = "";
 newurl: string = "";
 isShorten: boolean = false;
-
+users: any = [];
 smolify(){
   this.loader = true;
    // if loggedin
@@ -75,6 +75,14 @@ this.http.get('http://localhost:3001/api/url/shorten').subscribe((data: any) => 
   this.howmanylinks = data;
 }
 );
+
+// fetch user infos
+if (localStorage.getItem('id')){
+this.http.get('http://localhost:3001/api/user/' + this.decrypt(localStorage.getItem('id'))).subscribe((data: any) => {
+  this.users = data;
+}
+);
+}
    }
 
   ngOnInit(): void {
