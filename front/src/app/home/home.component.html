@@ -33,8 +33,9 @@
 
 <div *ngIf="isShorten"  class="bg-yellow-100 w-3/4 mt-12 text-center py-6 lg:text-4xl text-xl font-black text-slate-700 rounded-3xl"><a class="exampleClass" href="http://localhost:3001/{{newurl}}" target="_blank">https://smol.lu/<span class="text-slate-700">{{newurl}}</span></a> <br> <span (click)="copyMessage('http://localhost:3001/' + newurl)" class="exampleClass cursor-pointer text-xl text-orange-500 hover:text-orange-600 font-extrabold ">Copy</span></div>
 
-<div class="mt-12 text-slate-800 text-center">Want more ? <br> Try our <span class="font-bold">premium features</span>  for just 1$/month</div>
-
+<div *ngFor="let user of users">
+<div *ngIf="user.premium == 0" class="mt-12 text-slate-800 text-center">Want more ? <br> Try our <span class="font-bold">premium features</span>  for just 1$/month</div>
+</div>
 
 
 <div class="text-base text-orange-900 absolute bottom-20 " *ngIf="howmanylinks != 0">Already <span class="font-black">{{howmanylinks}}</span> links shortened</div>

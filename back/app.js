@@ -10,8 +10,22 @@ var ObjectId = require('mongodb').ObjectId;
 const cors = require("cors");
 var base62 = require("base62/lib/ascii");
 const redis = require('redis');
-const { urlredis } = require('./config/server');
+const { urlredis, stripelivekey, price } = require('./config/server');
 const bcrypt = require("bcrypt")
+const YOUR_DOMAIN = 'https://smol.lu';
+
+const stripe = require('stripe')(stripelivekey);
+// check the connexion to stripe
+stripe.balance.retrieve(function(err, balance) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Connected to Stripe : ✅");
+    }
+});
+
+
+
 
 const  PORT = 3001;
 
@@ -198,7 +212,32 @@ app.get('/api/user/:id', async (req, res) => {
     
 });
 
+// partie paiement avec stripe
+
+
+app.post('/create-checkout-session-single/:id', async (req, res) => {
+    // single payment of 50€
+    const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        payment_method_types: ['card'],
+        line_items: [
+            {
+                price: price,
+                quantity: 1,
+            },
+        ],
+
+
+
+        success_url: `${YOUR_DOMAIN}/successsingle/${req.params.id}`,
+        cancel_url: `${YOUR_DOMAIN}#/canceled`
+    });
+    res.json({ id: session.id });
+
+  
+  });
+
+
 app.listen(PORT, function(){
-    console.log("Node Js Server running on port " + PORT 
-     + " : ✅");
+    console.log("Connected to PORT "+ PORT + " ✅");
 })
