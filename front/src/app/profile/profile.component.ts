@@ -31,6 +31,8 @@ export class ProfileComponent implements OnInit {
   users: Array<any> = [];
 
   checkout(priceId: any) {
+    this.loader = true;
+    
     this.http.post('http://localhost:3001/create-checkout-session/' + this.decrypt(localStorage.getItem('id')), { priceId })
       .pipe(
         switchMap(session => {
@@ -54,7 +56,7 @@ export class ProfileComponent implements OnInit {
   success: boolean = false
   
   failure:boolean = false
-  
+
   constructor(private http: HttpClient, private stripeService: StripeService,) {
     this.loader = true;
     this.http.get('http://localhost:3001/api/user/' + this.decrypt(localStorage.getItem('id'))).subscribe((data: any) => {

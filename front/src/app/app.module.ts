@@ -32,7 +32,7 @@ import { StripeService } from 'ngx-stripe';
     HttpClientModule,
     FormsModule,
     NgxStripeModule,
-    NgxStripeModule.forRoot('pk_live_51Lz0zUH90mkV8RbSW8MlJriR5jX50QsBOvey8iSI2ILkSj2OBTe2VFoNpcr3XiWY8V3BpDByt3s7meOkOxY3bo0200N6jLpD4R'),
+    NgxStripeModule.forRoot('pk_test_51Lz0zUH90mkV8RbSTJSExllESbs3MoG2mhOR9fw9tQKYBwbcjUF24OsCA19pfV7onnoVnYPkfhxrEuSTXMo4zhLc00LNVmQgVK'),
   ],
   providers: [
     HttpClient,

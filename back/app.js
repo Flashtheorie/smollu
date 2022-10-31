@@ -12,7 +12,7 @@ var base62 = require("base62/lib/ascii");
 const redis = require('redis');
 const { urlredis, stripelivekey, price } = require('./config/server');
 const bcrypt = require("bcrypt")
-const YOUR_DOMAIN = 'https://smol.lu';
+const YOUR_DOMAIN = 'http://localhost:4200';
 
 const stripe = require('stripe')(stripelivekey);
 // check the connexion to stripe
@@ -218,19 +218,19 @@ app.get('/api/user/:id', async (req, res) => {
 app.post('/create-checkout-session/:id', async (req, res) => {
     // single payment of 50€
     const session = await stripe.checkout.sessions.create({
-        mode: 'payment',
+        mode: 'subscription',
         payment_method_types: ['card'],
         line_items: [
             {
-                price: price,
+                price: 'price_1Lz5dDH90mkV8RbSaxqNX73I',
                 quantity: 1,
             },
         ],
 
 
 
-        success_url: `${YOUR_DOMAIN}/successsingle/${req.params.id}`,
-        cancel_url: `${YOUR_DOMAIN}#/canceled`
+        success_url: `http://localhost:3001/successsingle/${req.params.id}`,
+        cancel_url: `${YOUR_DOMAIN}/canceled`
     });
     res.json({ id: session.id });
 
@@ -238,6 +238,17 @@ app.post('/create-checkout-session/:id', async (req, res) => {
   });
 
   
+// Success payement with id
+app.get('/successsingle/:id', async (req, res) => {
+    var id = req.params.id;
+    db.collection('users').updateOne({_id: ObjectId(id)}, {$set: {premium: 1}}, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('http://localhost:4200/profile');
+        }
+    });
+});
 
 app.listen(PORT, function(){
     console.log("Connected to PORT "+ PORT + " ✅");
