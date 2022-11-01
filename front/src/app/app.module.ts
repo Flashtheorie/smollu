@@ -14,6 +14,7 @@ import { MylinksComponent } from './mylinks/mylinks.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { StripeService } from 'ngx-stripe';
+import { CustomComponent } from './custom/custom.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { StripeService } from 'ngx-stripe';
     LoginComponent,
     RegisterComponent,
     MylinksComponent,
-    ProfileComponent
+    ProfileComponent,
+    CustomComponent
   ],
   imports: [
     BrowserModule,

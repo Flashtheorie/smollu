@@ -1,0 +1,33 @@
+<app-navbaroffline *ngIf="!isLoggedin()"></app-navbaroffline>
+<app-navbaronline *ngIf="isLoggedin()"></app-navbaronline>
+
+
+<div class="flex flex-col items-center">
+
+    <div class="mt-16 text-6xl lg:text-9xl text-orange-900 font-black font-mono animation">custom</div>
+
+
+<input [(ngModel)]="url" type="text" placeholder="Paste your link here" class="placeholder:uppercase text-center px-3 py-4 text-3xl placeholder-orange-800 text-orange-800 relative bg-orange-600 rounded-3xl border-orange-700 border-0  outline-none focus:outline-none  w-2/4 mt-16"/>
+<input [(ngModel)]="customurl" type="text" placeholder="Paste the custom ending here" class="placeholder:uppercase text-center px-3 py-4 text-3xl placeholder-orange-800 text-orange-800 relative bg-orange-600 rounded-3xl border-orange-700 border-0  outline-none focus:outline-none  w-2/4 mt-16"/>
+
+<span *ngIf="customurl" class="text-xl text-orange-900">The url will be <span class="font-bold">https://smol.lu/</span><span class="font-black">{{customurl}}</span></span>
+<button *ngIf="customurl && url" (click)="smolify()" class=" exampleClass mt-12 bg-orange-800 text-orange-900 hover:text-orange-800 hover:bg-orange-900 text-5xl font-black  px-12 py-6 rounded-3xl">
+    <span *ngIf="!loader">
+        Custom Smolify
+    </span>
+    <span *ngIf="loader">
+        <div class="loader"></div>
+    </span>
+</button>
+
+<button *ngIf="!customurl || !url" class="cursor-not-allowed exampleClass mt-12 bg-stone-700 text-stone-500  text-5xl font-black  px-12 py-6 rounded-3xl">
+    <span *ngIf="!loader">
+        Custom Smolify
+    </span>
+    <span *ngIf="loader">
+        <div class="loader"></div>
+    </span>
+</button>
+
+
+</div> <!-- flex -->

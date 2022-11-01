@@ -9,8 +9,8 @@
 <div *ngIf="!loader">
 <div *ngIf="!mylinks?.length" class="text-center mt-32 text-2xl font-bold text-red-900">You never shortened any URL's</div>
 
-
-<div *ngFor="let link of mylinks" class="flex justify-center mt-12">
+<div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-2 my-12 m-12 mt-16 ">
+<div *ngFor="let link of mylinks" class="">
     <!-- show old links and short links in cards -->
     <div class="bg-orange-400 rounded-2xl p-6 text-center text-orange-900">
         <span class="italic">{{link.longUrl}}</span>
@@ -31,6 +31,6 @@
     
 </div>
 
-
+</div>
 
 </div>

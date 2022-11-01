@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomComponent } from './custom/custom.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MylinksComponent } from './mylinks/mylinks.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'mylinks', component: MylinksComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'custom', component: CustomComponent},
 
 
   // path 404
