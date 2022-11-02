@@ -197,19 +197,13 @@ app.get('/api/delete/:id', async (req, res) => {
 // fetch user infos
 app.get('/api/user/:id', async (req, res) => {
     var id = req.params.id;
-    // to array
     db.collection('users').find({_id: ObjectId(id)}).toArray(function(err, result) {
         if (err) {
             console.log(err);
         } else {
             res.json(result);
         }
-// transform into array
-    
     });
-
-    
-    
 });
 
 // partie paiement avec stripe
