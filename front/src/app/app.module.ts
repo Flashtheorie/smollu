@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { StripeService } from 'ngx-stripe';
 import { CustomComponent } from './custom/custom.component';
+import { DateagoPipe } from './dateago.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { CustomComponent } from './custom/custom.component';
     RegisterComponent,
     MylinksComponent,
     ProfileComponent,
-    CustomComponent
+    CustomComponent,
+    DateagoPipe
   ],
   imports: [
     BrowserModule,

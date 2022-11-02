@@ -39,7 +39,7 @@ export class CustomComponent implements OnInit {
         alert("Custom URL already exists");
       }
       else if (data == "ok"){
-        alert("URL shortened successfully");
+        alert("URL shortened successfully, go the My links page to see it");
         window.location.reload();
       }
       
