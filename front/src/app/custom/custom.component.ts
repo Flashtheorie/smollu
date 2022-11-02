@@ -35,12 +35,14 @@ export class CustomComponent implements OnInit {
   smolify(){
     this.loader = false;
     this.http.post('http://localhost:3001/api/custom', {url: this.url, customurl: this.customurl, iduser: this.decrypt(localStorage.getItem('id'))}).subscribe((data: any) => {
-      if (data.success == true) {
-        this.loader = true;
-        this.url = "";
-        this.customurl = "";
+      if (data == "already"){
+        alert("Custom URL already exists");
       }
-      window.location.reload();
+      else if (data == "ok"){
+        alert("URL shortened successfully");
+        window.location.reload();
+      }
+      
     });
     
 

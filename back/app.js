@@ -250,7 +250,7 @@ app.post('/api/custom', async (req, res) => {
     var iduser = req.body.iduser;
     var custom = await db.collection('urls').findOne({shortUrl: customurl});
     if (custom) {
-        res.json('error');
+        res.json('already');
     } else {
         db.collection('urls').insertOne({longUrl: url, shortUrl: customurl, iduser: iduser, statut: 1, date: new Date()}, function(err, result) {
             if (err) {
@@ -258,10 +258,11 @@ app.post('/api/custom', async (req, res) => {
             } else {
                 // hSet with a 10 minutes expiration
                 client.hSet('urls', url, url, 'EX', 600);
+                res.json('ok');
             }
         }
         );
-        res.json('ok');
+        
     }
 });
 
