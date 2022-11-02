@@ -181,7 +181,7 @@ app.post('/api/login', async (req, res) => {
 // fetch links from user
 app.get('/api/links/:id', async (req, res) => {
     var id = req.params.id;
-    var links = await db.collection('urls').find({iduser: id, statut: 1}).toArray();
+    var links = await db.collection('urls').find({iduser: id, statut: 1}).sort({date: -1}).toArray();
     res.json(links);
 });
 
