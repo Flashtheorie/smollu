@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CustomComponent } from './custom/custom.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { ModifyComponent } from './modify/modify.component';
 import { MylinksComponent } from './mylinks/mylinks.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'mylinks', component: MylinksComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'custom', component: CustomComponent},
+  {path: 'modify', component: ModifyComponent},
 
 
   // path 404

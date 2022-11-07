@@ -3,6 +3,8 @@
 
 
 
+
+
 <div *ngIf="loader" class="grid h-screen place-items-center">
     <div class="loader "></div>
 </div>
@@ -13,45 +15,31 @@
 
 
     <div class="mx-auto my-10 flex max-w-xs flex-col items-center rounded-xl border border-slate-800 dark:border-slate-100 px-4 py-4 text-center md:max-w-lg md:flex-row md:items-start md:text-left">
-      <div class="mb-4 md:mr-6 md:mb-0">
-       
-                 <img src="https://ui-avatars.com/api/name={{user.email}}&bold=true" class="h-56 rounded-3xl object-cover md:w-56" alt="profile picture" srcset="">
-                
-               
-    
       
-      </div>
       <div class="">
-        <p class="text-base font-black text-orange-900 dark:text-slate-100">{{user.email }} 
+        <input [(ngModel)]="email" type="text" placeholder="{{user.email}}" class=" text-center px-3 py-4 text-xs placeholder-orange-800 text-orange-800 relative bg-orange-600 rounded-3xl border-orange-700 border-0  outline-none focus:outline-none  w-full mt-2"/>
           
         <p class="mb-4 text-sm font-medium text-orange-500">
           
         <div class="flex space-x-2 justify-center">
+            <button routerLink="/profile" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full" >Update <i class="fa-solid fa-check"></i></button>
           
-          <div class="flex flex-col items-center rounded-xl bg-gray-100 px-4 py-2">
-            <p class="text-sm font-medium text-gray-500">Account type</p>
-            <p class="text-3xl  text-gray-600 font-black" *ngIf="user.premium == 0">Basic</p>
-            <p class="text-3xl  text-yellow-600 font-black" *ngIf="user.premium == 1">Premium</p>
-          
-          
-          
-          </div>
-          
+          <!-- Button to update changes -->
+            
           <div class=""></div>
         </div>
         <div class="mb-3">
+            <hr class="my-6">
           <!-- Button to modify profile centered --> 
           <div class="flex justify-center mt-6">
-            <button routerLink="/modify" class="bg-stone-500 hover:bg-stone-600 text-white font-bold py-2 px-4 rounded-full" >Modify profile <i class="fa-solid fa-gear"></i></button>
+            <button routerLink="/profile" class="bg-stone-500 hover:bg-stone-600 text-white font-bold py-2 px-4 rounded-full" >Retour au profil</button>
           </div>
 
         </div>
         
           <a class="group relative inline-block  duration-300 w-full">
           <!-- button to upgrade account -->
-            <button (click)="checkout('price_1Lz5dDH90mkV8RbSaxqNX73I')" *ngIf="user.premium == 0" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full w-full">
-              Upgrade Account
-            </button>
+           
           
     </a><div class="flex space-x-2">
     
