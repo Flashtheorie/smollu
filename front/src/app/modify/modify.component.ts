@@ -16,6 +16,18 @@ export class ModifyComponent implements OnInit {
     return JSON.parse(bytes)
   }
 
+  modify(){
+    this.http.post('http://localhost:3001/api/user/modify', {
+      id: this.decrypt(localStorage.getItem('id')),
+      email: this.email
+
+    }).subscribe((data: any) => {
+      console.log(data);
+    }
+    );
+    window.location.reload();
+  }
+
 
   isLoggedin(){
     if (localStorage.getItem('id') != null) {
@@ -34,6 +46,8 @@ export class ModifyComponent implements OnInit {
       }
       );
       }
+
+      
    }
 
   ngOnInit(): void {

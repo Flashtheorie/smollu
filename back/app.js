@@ -266,6 +266,18 @@ app.post('/api/custom', async (req, res) => {
     }
 });
 
+app.post('/api/user/modify', async (req, res) => {
+    var id = req.body.id;
+    var email = req.body.email
+    db.collection('users').updateOne({_id: ObjectId(id)}, {$set: {email: email}}, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json('ok');
+        }
+    });
+});
+
 app.listen(PORT, function(){
     console.log("Connected to PORT "+ PORT + " ✅");
 })
