@@ -30,6 +30,20 @@ export class MylinksComponent implements OnInit {
     let bytes = CryptoJS.AES.decrypt(decData, key).toString(CryptoJS.enc.Utf8)
     return JSON.parse(bytes)
   }
+  copyMessage(val: string){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+  
   delete(id: string){
     this.loader = true;
     this.http.get('http://localhost:3001/api/delete/' + id).subscribe((data: any) => {
@@ -38,6 +52,8 @@ export class MylinksComponent implements OnInit {
     this.loader = false;  
       
     });
+  
+    
   }
   constructor(private http: HttpClient) { 
     this.loader = true;
@@ -46,6 +62,7 @@ export class MylinksComponent implements OnInit {
 
       this.loader = false;
     });
+    
   }
 
   ngOnInit(): void {

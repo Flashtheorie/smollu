@@ -13,9 +13,9 @@
 <div *ngFor="let link of mylinks" class="">
     <!-- show old links and short links in cards -->
     <div class="bg-orange-400 rounded-2xl p-6 text-center text-orange-900">
-        <span class="italic">{{link.longUrl }}</span>
+        <span class="italic text-xs ">{{link.longUrl }}</span>
         <br>
-        <span class="text-xl font-bold">https://smol.lu/{{link.shortUrl}}</span>
+        <span (click)="copyMessage('https://smol.lu/' + link.shortUrl)" class="text-xl font-bold longurl cursor-pointer hover:text-orange-700">https://smol.lu/{{link.shortUrl}}</span>
 
         <!-- bouton pour supprimer -->
         <div class="flex justify-center mt-4 gap-6">
